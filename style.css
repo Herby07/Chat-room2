@@ -1,0 +1,98 @@
+body{
+    background: #222;
+}
+h1{
+    font-size: 40px;
+}
+
+.espace{
+    height: 350px;
+}
+
+pre{
+    background: #222;
+    color: aqua;
+}
+
+h1{
+    position: relative;
+    text-align: center; 
+    font-family: "Megrim", sans-serif;
+    font-size: 35px;
+    color: #ffff;
+    text-shadow: 0 0 5px #0bf4f3,
+    0 0 10px #0bf4f3,
+    0 0 20px #0bf4f3,  
+    0 0 40px #0bf4f3,
+    0 0 80px #0bf4f3
+    ;
+}
+
+p{
+    position: absolute;
+    top: 90%;
+    left:32%;
+text-align: center; 
+font-size: 18px;
+color: #ffff;
+text-shadow: 0 0 5px #0bf4f3,
+0 0 10px #0bf4f3,
+0 0 20px #0bf4f3,  
+0 0 40px #0bf4f3,
+0 0 80px #0bf4f3
+;
+}
+
+.msg{
+    position: absolute;
+    top: 80%;
+    left: 3px;
+    background-color: #222;
+    border: 1px solid aqua;
+    width: 70px;
+    color: white;
+    height: 40px;
+
+}
+
+.msg::placeholder{
+    color: #0bf4f3;
+    font-size: 15px;
+}
+
+.btn{
+    position: absolute;
+    top: 79.9%;
+    left: 73.5%;
+    width: 30px;
+    background-color: aqua;
+    font-size: 15px;
+}
+
+.btn:hover{
+    color:white;
+}
+
+@media (max-height:515px){
+    .espace{
+        height: 300px;
+    }
+    .btn{
+        font-size: 10px;
+    }
+}
+
+@media (max-height:465px){
+    .espace{
+        height: 250px;
+    }
+    .btn{
+        font-size: 10px;
+    }
+}
+
+@media (max-height:415px){
+    .espace{
+        height: 200px;
+    }
+}

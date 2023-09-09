@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Pompiere&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Chat-room</h1>
+    <pre class="espace" id="messages" style="overflow: scroll"></pre>
+    
+    <input class="msg" type="text" id="messageBox" required="required" placeholder="Entrez votre message ici..." style="display: block; width: 70%; margin-bottom: 10px; padding: 10px;" />
+    <button class="btn" id="send" title="Send Message!"  style="width: 23%; height: 65px;">Envoyer</button>
+    <div class="container">
+  </div>
+  <div id="systemMessage"></div>
+  <p>Create by Sthed</p>
+    <script>
+        (function() {
+            const sendBtn = document.querySelector('#send');
+            const messages = document.querySelector('#messages');
+            const messageBox = document.querySelector('#messageBox');
+
+            let ws;
+            let username = sessionStorage.getItem('username'); // Récupérez le nom d'utilisateur
+
+            function showMessage(message) {
+                messages.textContent += `\n\n${message}`;
+                messages.scrollTop = messages.scrollHeight;
+                messageBox.value = '';
+            }
+
+            function init() {
+                if (ws) {
+                    ws.onerror = ws.onopen = ws.onclose = null;
+                    ws.close();
+                }
+
+                ws = new WebSocket('ws://localhost:6969');
+                ws.onopen = () => {
+                    console.log('Connection opened!');
+                };
+
+
+                ws.onmessage = ({ data }) => showMessage(data);
+                ws.onclose = function() {
+                    ws = null;
+                };
+            }
+
+            sendBtn.onclick = function() {
+                if (!ws) {
+                    showMessage("No WebSocket connection :(");
+                    return;
+                }
+
+                // Envoyer le message avec le nom d'utilisateur
+                const message = `${username}: ${messageBox.value}`;
+                ws.send(message);
+                showMessage(message);
+            };
+
+            
+            
+
+            init();
+        })();
+    </script>
+</body>
+</html>
